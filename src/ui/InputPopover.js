@@ -43,26 +43,28 @@ export default class InputPopover extends Component {
     return (
       <div className={className}>
         <div className={styles.inner}>
-          <input
-            ref={this._setInputRef}
-            defaultValue={props.defaultValue}
-            type="text"
-            placeholder="https://example.com/"
-            className={styles.input}
-            onKeyPress={this._onInputKeyPress}
-          />
-          <ButtonGroup className={styles.buttonGroup}>
-            <IconButton
-              label="Cancel"
-              iconName="cancel"
-              onClick={props.onCancel}
+          <form onSubmit={this._onSubmit} style={{display:"inherit"}}>
+            <input
+              ref={this._setInputRef}
+              defaultValue={props.defaultValue}
+              type="url"
+              placeholder="https://example.com/"
+              className={styles.input}
+              onKeyPress={this._onInputKeyPress}
             />
-            <IconButton
-              label="Submit"
-              iconName="accept"
-              onClick={this._onSubmit}
-            />
-          </ButtonGroup>
+            <ButtonGroup className={styles.buttonGroup}>
+              <IconButton
+                label="Cancel"
+                iconName="cancel"
+                onClick={props.onCancel}
+              />
+              <IconButton
+                label="Submit"
+                iconName="accept"
+                type="submit"
+              />
+            </ButtonGroup>
+          </form>
         </div>
       </div>
     );
