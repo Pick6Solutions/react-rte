@@ -1,7 +1,7 @@
 {
-  "name": "react-rte",
-  "version": "0.16.1",
-  "description": "React Rich Text Editor",
+  "name": "html-verify-react-rte",
+  "version": "1.0.0",
+  "description": "React Rich Text Editor with url varification",
   "main": "dist/react-rte.js",
   "files": [
     "lib",
@@ -28,7 +28,9 @@
     "draft-js-import-html": ">=0.4.0",
     "draft-js-import-markdown": ">=0.3.0",
     "draft-js-utils": ">=0.2.0",
-    "immutable": "^3.8.1"
+    "immutable": "^3.8.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "peerDependencies": {
     "react": "0.14.x || 15.x.x || 16.x.x",
@@ -62,7 +64,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sstur/react-rte.git"
+    "url": "git+https://github.com/Pick6Solutions/react-rte.git"
   },
   "keywords": [
     "reactjs",
@@ -137,7 +139,7 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sstur/react-rte/issues"
+    "url": "https://github.com/Pick6Solutions/react-rte#issues"
   },
-  "homepage": "https://github.com/sstur/react-rte#readme"
+  "homepage": "https://github.com/Pick6Solutions/react-rte#readme"
 }
