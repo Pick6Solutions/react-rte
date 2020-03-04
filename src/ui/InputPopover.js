@@ -43,29 +43,28 @@ export default class InputPopover extends Component {
     return (
       <div className={className}>
         <div className={styles.inner}>
-          <form onSubmit={this._onSubmit} style={{display:"inherit"}}>
-            <input
-              ref={this._setInputRef}
-              defaultValue={props.defaultValue}
-              type="url"
-              placeholder="https://example.com/"
-              className={styles.input}
-              onKeyPress={this._onInputKeyPress}
+          <input
+            ref={this._setInputRef}
+            defaultValue={props.defaultValue}
+            type="text"
+            placeholder="https://example.com/"
+            className={styles.input}
+            onKeyPress={this._onInputKeyPress}
+          />
+          <ButtonGroup className={styles.buttonGroup}>
+            <IconButton
+              label="Cancel"
+              iconName="cancel"
+              onClick={props.onCancel}
             />
-            <ButtonGroup className={styles.buttonGroup}>
-              <IconButton
-                label="Cancel"
-                iconName="cancel"
-                onClick={props.onCancel}
-              />
-              <IconButton
-                label="Submit"
-                iconName="accept"
-                type="submit"
-              />
-            </ButtonGroup>
-          </form>
+            <IconButton
+              label="Submit"
+              iconName="accept"
+              onClick={this._onSubmit}
+            />
+          </ButtonGroup>
         </div>
+        <div id="urlError12345312131" style={{color:'red',display:"none"}}>Not A URL</div>
       </div>
     );
   }
@@ -82,8 +81,29 @@ export default class InputPopover extends Component {
     }
   }
 
+  validURL(str) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(str);
+  }
+
   _onSubmit() {
     let value = this._inputRef ? this._inputRef.value : '';
+    const element = document.getElementById("urlError12345312131");
+    if(!this.validURL(value)){
+      if(element){
+        element.style.display = "block"
+      }
+      return
+    } else {
+      if(element){
+        element.style.display = "none"
+      }
+    }
     this.props.onSubmit(value);
   }
 
